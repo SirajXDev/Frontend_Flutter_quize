@@ -5,11 +5,13 @@ import 'dart:convert';
 
 
 class ItemListScreen extends StatefulWidget {
+  const ItemListScreen({super.key});
+
   @override
-  _ItemListScreenState createState() => _ItemListScreenState();
+  ItemListScreenState createState() => ItemListScreenState();
 }
 
-class _ItemListScreenState extends State<ItemListScreen> {
+class ItemListScreenState extends State<ItemListScreen> {
   List<dynamic> _items = [];
   List<dynamic> _filteredItems = [];
   bool _isLoading = true;
@@ -49,24 +51,24 @@ class _ItemListScreenState extends State<ItemListScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Confirmation'),
-          content: Text('Do you want to proceed?'),
+          title: const Text('Confirmation'),
+          content: const Text('Do you want to proceed?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 // Handle the confirmation action here
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Confirmed!')),
+                  const SnackBar(content: Text('Confirmed!')),
                 );
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -79,18 +81,18 @@ class _ItemListScreenState extends State<ItemListScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: Text('Item List'),
+        title: const Text('Item List'),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Column(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _searchController,
-                    style:TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    style:const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                       labelText: 'Search',
                       border: OutlineInputBorder(),
                     ),
@@ -113,7 +115,7 @@ class _ItemListScreenState extends State<ItemListScreen> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showConfirmationDialog,
-        child: Icon(Icons.confirmation_number,),
+        child: const Icon(Icons.confirmation_number,),
       ),
     );
   }
